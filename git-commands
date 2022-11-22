@@ -1,6 +1,11 @@
 git init  ( to intilize the git repo)
 
 git config --global user.name "Polarapu Prasad"
+smaple data from prasad
+smaple data2 from prasad
+smaple data3 from prasad
+smaple data4 from prasad
+smaple data5 from prasad
 git config --global user.email "devopstraining2015@gmail.com"
 
 git config --list
