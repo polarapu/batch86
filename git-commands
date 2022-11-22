@@ -2,7 +2,9 @@ git init  ( to intilize the git repo)
 
 git config --global user.name "Polarapu Prasad"
 git config --global user.email "devopstraining2015@gmail.com"
-
+sandhya 
+greeshma
+priyadharshini 
 git config --list
 
 git config --global --unset user.name
