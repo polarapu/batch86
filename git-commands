@@ -6,6 +6,9 @@ smaple data2 from prasad
 smaple data3 from prasad
 smaple data4 from prasad
 smaple data5 from prasad
+test line1
+test line2
+test line3
 git config --global user.email "devopstraining2015@gmail.com"
 
 git config --list
