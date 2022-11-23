@@ -1,65 +1,65 @@
 git init  ( to intilize the git repo)
 
-git config --global user.name "Polarapu Prasad"
+gifddft config --global user.name "Polarapu Prasad"
 smaple data from prasad
-smaple data2 from prasad
+smaplefdfdfdf data2 from prasad
 smaple data3 from prasad
-test line1
-test line2
-test line3
-test line4
+test line1dfdgb
+test line2v
+test line3f
+test line4gbgf
 test line5
 git config --global user.email "devopstraining2015@gmail.com"
-
-git config --list
-
-git config --global --unset user.name
-git config --global --unset user.email
-
-=========================================
-touch file1
-ls
-git status
-git add file1
-git status
-git commit -m "label" file1
-git status
-git log
-git show cid
-
-------------------
-touch file2 file3 file4
-ls
-git add file2 file3 file4
-or
-git add .
-or
-git add *
-or
-git add -A
-git status
-git commit -m "label" 
-
-
-
-
-===========================
-
-git add file  (workspace to staging)
-git reset head file  (staging to workspace)
-
-git commit -m "label" file  (staging to local)
-git reset --soft cid  (local to staging)
-
-git reset --mixed cid  (local to workspace)
-git reset --hard cid   (to delete commit log and commit files)
-
-================================
+ff
+gidgt config --list
+df
+gigft config --global --unset user.name
+git bconfig --global --unset user.email
+fb
+==fgb=======================================
+touchgf file1
+lshb
+git gfhstatus
+git addgfh file1
+git statusgf
+git commit -hm "label" file1
+git statusgfhfgdfgdf
+git loggdf
+git show cgid
+g
+-df-----------------
+tougdfch file2 file3 file4
+lsg
+gitdfg add file2 file3 file4
+ordf
+git gadd .
+orfdg
+git adfdd *
+org
+gitbg add -A
+git sntatus
+git cohmmmit -m "label" 
+jhm
+hj
+m
+d
+=hn==========================
+hg
+gingt add file  (workspace to staging)
+git nreset head file  (staging to workspace)
+gn
+gigfnt commit -m "label" file  (staging to local)
+git rgfneset --soft cid  (local to staging)
+n
+gfgit reset --mixed cid  (local to workspace)
+gitnn reset --hard cid   (to delete commit log and commit files)
+n
+=n===============================
 create a repo in git-hub
-
-git clone https://github.com/polarapu/batch86.git
-ls
-cd batch86
+nngnhgn
+git clohgne https://github.com/polarapu/batch86.git
+lsn
+cd hgnbatch86
 ls
 touch file1
 git status
