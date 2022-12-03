@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project cid="0" version="1.2">
+<projectproperties>
+<projectproperty id="analyserfolder" module="Ingenias Analyser Module"  name="Main folder of the ACLAnaliser folder" value=""  tooltip="The folder that contains the ACLAnalyser" />
+<projectproperty id="producecode" module="Ingenias Agent Framework generator"  name="Triggers the use of code components" value="yes"  tooltip="Write &quot;yes&quot; if you want to use code componentes, and &quot;no&quot; in any other case" />
+<projectproperty id="jadeperm" module="Ingenias Agent Framework generator"  name="JADE generate only once folder" value="src/main/javapermsrc"  tooltip="The folder that will hold generated elements that should not be regenerated" />
+<projectproperty id="jadeout" module="JADE agents generator"  name="JADE output folder" value="outputjade"  tooltip="The folder that will hold generated JADE agents" />
+<projectproperty id="jadeout" module="Ingenias Agent Framework generator"  name="JADE generated output folder" value="src/main/javagensrc"  tooltip="The folder that will hold generated JADE agents" />
+<projectproperty id="proysrc" module="Ingenias Agent Framework generator"  name="Main source folder for the project" value="src/main/src"  tooltip="The folder containing the sources of the project" />
+<projectproperty id="extfolder" module="IDK"  name="Extension Module Folder" value="ext"  tooltip="Folder where the IDE will find its new modules" />
+<projectproperty id="htmldoc" module="HTML Document generator"  name="HTML document folder" value="target/dochtml"  tooltip="The document folder that will contain HTML version of this specification" />
+<projectproperty id="jadeproject" module="Ingenias Agent Framework generator"  name="JADE main project folder" value=""  tooltip="The folder that will contain the project for this development" />
+ <openeddiagram>Hello world agent definition</openeddiagram> <openeddiagram>Greet world task definition</openeddiagram> <openeddiagram>Greet world task code</openeddiagram>
+</projectproperties>
+<leafpackages>
+   <path>
+    <package id="Project"/>
+    <package id="Hello world agent definition"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Greet world task definition"/>
+   </path>
+   <path>
+    <package id="Project"/>
+    <package id="Greet world task code"/>
+   </path>
+</leafpackages>
+<objects>
+<object id="HelloWorldTask" type="ingenias.editor.entities.Task">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="HelloWorldAgent" type="ingenias.editor.entities.Agent">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="GreetWorldCode" type="ingenias.editor.entities.INGENIASCodeComponent">
+<mapproperties>
+<key id="Language">Java</key>
+<key id="Code">javax.swing.JOptionPane.showMessageDialog(null,&quot;Hello world&quot;, &quot;Hello!&quot;, javax.swing.JOptionPane.INFORMATION_MESSAGE);</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="GreetWorld" type="ingenias.editor.entities.Goal">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="GreetTriggerer" type="ingenias.editor.entities.FrameFact">
+<objectproperty id="Slots" collection="true">
+</objectproperty>
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">UML</key>
+</mapproperties>
+</object>
+<object id="InitialMentalState" type="ingenias.editor.entities.MentalState">
+<mapproperties>
+<key id="Description"></key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="UMLComment0" type="ingenias.editor.entities.UMLComment">
+<mapproperties>
+<key id="Text">This kind of initialization assumes an instance of GreetTriggerer will be created. Nevertheless, this instance will not be initialized. If the instance should have values assigned to its slots, please use a deployment package entity and a deployment diagram.</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="UMLComment1" type="ingenias.editor.entities.UMLComment">
+<mapproperties>
+<key id="Text">This code can be updated if you modify the text within the start_node and end_node comments in the corresponding task java file, which is ingenias.jade.components.HelloWorldTaskTask.java, in the gensrc folder. To do so, use the Code Uploader, available from the IDK Menu bar</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="UMLComment2" type="ingenias.editor.entities.UMLComment">
+<mapproperties>
+<key id="Text">This task will be executed as soon as it finds an instance of GreetTriggerer</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<object id="UMLComment3" type="ingenias.editor.entities.UMLComment">
+<mapproperties>
+<key id="Text">The task and the agent must be associated to the same goal type</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+</objects>
+<relationships>
+<relationship id="0" type="ingenias.editor.entities.GTPursues">
+<object id="0" type="ingenias.editor.entities.GTPursues">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="GreetWorld" class="ingenias.editor.entities.Goal" roleName="GTPursuestarget" type="ingenias.editor.entities.GTPursuestargetRole" dgcid="14200968">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="HelloWorldAgent" class="ingenias.editor.entities.Agent" roleName="GTPursuessource" type="ingenias.editor.entities.GTPursuessourceRole" dgcid="9136914">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="4" type="ingenias.editor.entities.AHasMS">
+<object id="4" type="ingenias.editor.entities.AHasMS">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="HelloWorldAgent" class="ingenias.editor.entities.Agent" roleName="AHasMSsource" type="ingenias.editor.entities.AHasMSsourceRole" dgcid="9136914">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="InitialMentalState" class="ingenias.editor.entities.MentalState" roleName="AHasMStarget" type="ingenias.editor.entities.AHasMStargetRole" dgcid="17846587">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="5" type="ingenias.editor.entities.AContainsME">
+<object id="5" type="ingenias.editor.entities.AContainsME">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="GreetTriggerer" class="ingenias.editor.entities.FrameFact" roleName="AContainsMEtarget" type="ingenias.editor.entities.AContainsMEtargetRole" dgcid="31698954">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="InitialMentalState" class="ingenias.editor.entities.MentalState" roleName="AContainsMEsource" type="ingenias.editor.entities.AContainsMEsourceRole" dgcid="17846587">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="6" type="ingenias.editor.entities.UMLAnnotatedElement">
+<object id="6" type="ingenias.editor.entities.UMLAnnotatedElement">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="UMLComment0" class="ingenias.editor.entities.UMLComment" roleName="HasCommentsource" type="ingenias.editor.entities.HasCommentsourceRole" dgcid="17540885">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="InitialMentalState" class="ingenias.editor.entities.MentalState" roleName="HasCommenttarget" type="ingenias.editor.entities.HasCommenttargetRole" dgcid="17846587">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="10" type="ingenias.editor.entities.UMLAnnotatedElement">
+<object id="10" type="ingenias.editor.entities.UMLAnnotatedElement">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="UMLComment3" class="ingenias.editor.entities.UMLComment" roleName="HasCommentsource" type="ingenias.editor.entities.HasCommentsourceRole" dgcid="9413379">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="GreetWorld" class="ingenias.editor.entities.Goal" roleName="HasCommenttarget" type="ingenias.editor.entities.HasCommenttargetRole" dgcid="14200968">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="1" type="ingenias.editor.entities.WFResponsable">
+<object id="1" type="ingenias.editor.entities.WFResponsable">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="HelloWorldAgent" class="ingenias.editor.entities.Agent" roleName="WFResponsablesource" type="ingenias.editor.entities.WFResponsablesourceRole" dgcid="32683455">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="HelloWorldTask" class="ingenias.editor.entities.Task" roleName="WFResponsabletarget" type="ingenias.editor.entities.WFResponsabletargetRole" dgcid="1243043">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="2" type="ingenias.editor.entities.GTSatisfies">
+<object id="2" type="ingenias.editor.entities.GTSatisfies">
+<objectproperty id="SatisfactionCondition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="GreetWorld" class="ingenias.editor.entities.Goal" roleName="GTSatisfiestarget" type="ingenias.editor.entities.GTSatisfiestargetRole" dgcid="17752028">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="HelloWorldTask" class="ingenias.editor.entities.Task" roleName="GTSatisfiessource" type="ingenias.editor.entities.GTSatisfiessourceRole" dgcid="1243043">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="3" type="ingenias.editor.entities.WFConsumes">
+<object id="3" type="ingenias.editor.entities.WFConsumes">
+<objectproperty id="Condition">
+</objectproperty>
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="GreetTriggerer" class="ingenias.editor.entities.FrameFact" roleName="WFConsumestarget" type="ingenias.editor.entities.WFConsumestargetRole" dgcid="13099527">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="HelloWorldTask" class="ingenias.editor.entities.Task" roleName="WFConsumessource" type="ingenias.editor.entities.WFConsumessourceRole" dgcid="1243043">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="9" type="ingenias.editor.entities.UMLAnnotatedElement">
+<object id="9" type="ingenias.editor.entities.UMLAnnotatedElement">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="HelloWorldTask" class="ingenias.editor.entities.Task" roleName="HasCommenttarget" type="ingenias.editor.entities.HasCommenttargetRole" dgcid="1243043">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="UMLComment2" class="ingenias.editor.entities.UMLComment" roleName="HasCommentsource" type="ingenias.editor.entities.HasCommentsourceRole" dgcid="32164048">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="7" type="ingenias.editor.entities.CDUsesCode">
+<object id="7" type="ingenias.editor.entities.CDUsesCode">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="GreetWorldCode" class="ingenias.editor.entities.INGENIASCodeComponent" roleName="CDUsesCodetarget" type="ingenias.editor.entities.CDUsesCodetargetRole" dgcid="25168616">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="HelloWorldTask" class="ingenias.editor.entities.Task" roleName="CDUsesCodesource" type="ingenias.editor.entities.CDUsesCodesourceRole" dgcid="12901699">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+<relationship id="8" type="ingenias.editor.entities.UMLAnnotatedElement">
+<object id="8" type="ingenias.editor.entities.UMLAnnotatedElement">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+<role idEntity="GreetWorldCode" class="ingenias.editor.entities.INGENIASCodeComponent" roleName="HasCommenttarget" type="ingenias.editor.entities.HasCommenttargetRole" dgcid="25168616">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role><role idEntity="UMLComment1" class="ingenias.editor.entities.UMLComment" roleName="HasCommentsource" type="ingenias.editor.entities.HasCommentsourceRole" dgcid="33539363">
+<mapproperties>
+<key id="attributeToShow">0</key>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</role></relationship>
+</relationships>
+<models> 
+ <model id="Hello world agent definition" type="ingenias.editor.models.AgentModelModelJGraph">
+<object id="Hello world agent definition" type="ingenias.editor.entities.AgentModelDataEntity">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="10" nid="19098409" type="UMLAnnotatedElement">
+
+	<connected id="9413379"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="14200968">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="InitialMentalState" nid="17846587" type="MentalState">
+
+	</node>
+			
+	<node id="6" nid="17797572" type="UMLAnnotatedElement">
+
+	<connected id="17540885"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="17846587">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="GreetWorld" nid="14200968" type="Goal">
+
+	</node>
+			
+	<node id="GreetTriggerer" nid="31698954" type="FrameFact">
+
+	</node>
+			
+	<node id="0" nid="7954053" type="GTPursues">
+
+	<connected id="9136914"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="14200968">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="UMLComment3" nid="9413379" type="UMLComment">
+
+	</node>
+			
+	<node id="5" nid="14213845" type="AContainsME">
+
+	<connected id="17846587"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="31698954">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="UMLComment0" nid="17540885" type="UMLComment">
+
+	</node>
+			
+	<node id="HelloWorldAgent" nid="9136914" type="Agent">
+
+	</node>
+			
+	<node id="4" nid="19194213" type="AHasMS">
+
+	<connected id="9136914"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="17846587">
+
+
+
+	</connected>
+	</node>
+	</graph>
+
+
+	<layout>
+			
+	<node id="node10">
+		<attr name="bounds">
+			<rectangle x="365" y="74" width="0" height="0"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="80" y="152" width="139" height="38"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node8">
+		<attr name="bounds">
+			<rectangle x="247" y="170" width="0" height="0"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="272" y="47" width="77" height="55"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="100" y="239" width="101" height="46"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="181" y="10" width="80" height="15"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node9">
+		<attr name="bounds">
+			<rectangle x="382" y="43" width="203" height="67"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="101" y="207" width="97" height="15"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="275" y="112" width="270" height="116"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="87" y="49" width="117" height="60"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="115" y="123" width="64" height="15"></rectangle>		</attr>
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="Greet world task definition" type="ingenias.editor.models.TasksAndGoalsModelModelJGraph">
+<object id="Greet world task definition" type="ingenias.editor.entities.TasksAndGoalsModelDataEntity">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="UMLComment2" nid="32164048" type="UMLComment">
+
+	</node>
+			
+	<node id="HelloWorldAgent" nid="32683455" type="Agent">
+
+	</node>
+			
+	<node id="1" nid="9022181" type="WFResponsable">
+
+	<connected id="32683455"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="1243043">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="GreetTriggerer" nid="13099527" type="FrameFact">
+
+	</node>
+			
+	<node id="2" nid="27434571" type="GTSatisfies">
+
+	<connected id="1243043"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="17752028">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="9" nid="14306514" type="UMLAnnotatedElement">
+
+	<connected id="32164048"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="1243043">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="HelloWorldTask" nid="1243043" type="Task">
+
+	</node>
+			
+	<node id="GreetWorld" nid="17752028" type="Goal">
+
+	</node>
+			
+	<node id="3" nid="12757895" type="WFConsumes">
+
+	<connected id="1243043"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="13099527">
+
+
+
+	</connected>
+	</node>
+	</graph>
+
+
+	<layout>
+			
+	<node id="node7">
+		<attr name="bounds">
+			<rectangle x="218" y="239" width="229" height="67"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="155" y="31" width="117" height="60"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="158" y="122" width="111" height="15"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node5">
+		<attr name="bounds">
+			<rectangle x="33" y="151" width="101" height="46"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="372" y="122" width="102" height="23"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node8">
+		<attr name="bounds">
+			<rectangle x="330" y="221" width="0" height="0"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="272" y="161" width="110" height="43"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="383" y="37" width="77" height="55"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node6">
+		<attr name="bounds">
+			<rectangle x="161" y="175" width="98" height="15"></rectangle>		</attr>
+
+	</node>
+	</layout>
+</gxl> </model>
+ <model id="Greet world task code" type="ingenias.editor.models.ComponentDiagramModelJGraph">
+<object id="Greet world task code" type="ingenias.editor.entities.ComponentDiagramDataEntity">
+<mapproperties>
+<key id="_view_type">INGENIAS</key>
+</mapproperties>
+</object>
+  <path>
+    <package id="Project"/>
+   </path>
+<gxl>
+
+	<graph>
+			
+	<node id="7" nid="5525418" type="CDUsesCode">
+
+	<connected id="12901699"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="25168616">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="HelloWorldTask" nid="12901699" type="Task">
+
+	</node>
+			
+	<node id="8" nid="2282188" type="UMLAnnotatedElement">
+
+	<connected id="33539363"><attr name="extraLabels">
+			<array>
+
+</array>
+</attr>
+
+
+
+	</connected>
+	<connected id="25168616">
+
+
+
+	</connected>
+	</node>
+			
+	<node id="UMLComment1" nid="33539363" type="UMLComment">
+
+	</node>
+			
+	<node id="GreetWorldCode" nid="25168616" type="INGENIASCodeComponent">
+
+	</node>
+	</graph>
+
+
+	<layout>
+			
+	<node id="node2">
+		<attr name="bounds">
+			<rectangle x="211" y="82" width="95" height="15"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node0">
+		<attr name="bounds">
+			<rectangle x="67" y="68" width="110" height="43"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node4">
+		<attr name="bounds">
+			<rectangle x="376" y="138" width="0" height="0"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node3">
+		<attr name="bounds">
+			<rectangle x="112" y="152" width="392" height="102"></rectangle>		</attr>
+
+	</node>
+			
+	<node id="node1">
+		<attr name="bounds">
+			<rectangle x="340" y="60" width="172" height="64"></rectangle>		</attr>
+
+	</node>
+	</layout>
+</gxl> </model>
+</models>
+</project>

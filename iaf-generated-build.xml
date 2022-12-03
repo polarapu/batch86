@@ -1,0 +1,244 @@
+
+ <project name="ingenias" default="run" basedir="." >
+
+  <property environment="env"/>
+  <property file="${user.home}/.m2/maven.properties"/>
+  <property file="maven-build.properties"/>
+  <property name="maven.build.dir" value="target"/>
+  <property name="maven.build.outputDir" value="${maven.build.dir}/classes"/>
+  <property name="maven.build.srcDir.0" value="src/main/java"/>
+  <property name="maven.build.resourceDir.0" value="src/main/resources"/>
+  <property name="maven.build.testOutputDir" value="${maven.build.dir}/test-classes"/>
+  <property name="maven.build.testDir.0" value="src/test/java"/>
+  <property name="maven.build.testResourceDir.0" value="src/test/resources"/>
+  <property name="maven.test.reports" value="${maven.build.dir}/test-reports"/>
+  <property name="maven.reporting.outputDirectory" value="${maven.build.dir}/site"/>
+  <property name="maven.repo.local" value="${user.home}/.m2/repository"/>
+  <property name="maven.settings.offline" value="false"/>
+  <property name="maven.settings.interactiveMode" value="true"/>
+  <property name="maven.src.dir" value="${env.M2_HOME}"/>
+  <property name="pom.dir" value="."/>
+
+
+  <target name="init" unless="env.M2_HOME">
+	<echo message="You need to set the M2_HOME variable to the path of your Maven install folder."/>
+	<echo message="Linux: you can invoke this with 'env M2_HOME=WRITE_HERE_THE_HOME_OF_MAVEN ant WHATEVER_TARGET'"/>
+	<echo message="Windows: find the MyComputer icon in your desktop or your start menu, click on properties, then advanced tab, then environment variables."/>
+	<fail status="1" /> 
+  </target>
+
+  <target name="generateclasspathfrommaven" unless="maven.classpath.present">
+   <maven basedir="${pom.dir}" goal="validate" resultproperty="maven.build.result" options="-e -Dbuild.for.prod=false -Djavac.debug=true -Djavac.optimize=false"/>
+ </target>
+
+  <target name="getclasspathfrommaven" depends="init">
+	 <available file="target/classpath.txt" type="file"
+           property="maven.classpath.present"/>
+   <antcall target="generateclasspathfrommaven"/>  
+   <loadfile srcFile="target/classpath.txt" property="mavenclasspath" />  
+   <loadfile srcFile="target/classpathingenias.txt" property="ingeniasmavenclasspath" />  
+  </target>
+  
+<!--
+This is the macro definition for maven Ant task
+-->
+<!-- from http://tsrini.blogspot.com.es/2010/07/call-maven-task-from-ant.html-->
+<macrodef name="maven">
+<attribute name="options" default="" />
+<attribute name="goal" />
+<attribute name="basedir" />
+<attribute name="resultproperty" default="maven.result" />
+<element name="args" implicit="true" optional="true" />
+<sequential>
+<java classname="org.codehaus.classworlds.Launcher" fork="true" dir="@{basedir}" resultproperty="@{resultproperty}">
+<jvmarg value="-Xmx512m" />
+<classpath>
+<fileset dir="${maven.src.dir}/boot">
+<include name="*.jar" />
+</fileset>
+<fileset dir="${maven.src.dir}/lib">
+<include name="*.jar" />
+</fileset>
+</classpath>
+<sysproperty key="classworlds.conf" value="${maven.src.dir}/bin/m2.conf" />
+<sysproperty key="maven.home" value="${maven.src.dir}" />
+<arg line="--batch-mode @{options} @{goal}" />
+</java>
+</sequential>
+</macrodef>
+
+  <target name="compileproject" depends="getclasspathfrommaven">
+ <maven basedir="${pom.dir}" goal="compile" resultproperty="maven.build.result" options="-e -Dbuild.for.prod=false -Djavac.debug=true -Djavac.optimize=false"/>
+  </target>
+    <!--  Targets to run simulations defined in the system -->
+   
+   
+  
+  
+  
+  
+  <!-- ***********************  -->
+  <!-- Node BasicDeployment -->
+  <!-- ***********************  -->
+  <!--   Runs a MAS created with the jade module and contained in the node BasicDeployment -->
+   <target name="runBasicDeploymentProdStandAlone" depends="compileproject">
+    <mkdir dir="target/jade"/>
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="ingenias.jade.MainBasicDeploymentProdStandAlone">
+    <arg line="60000"/>
+		<classpath>		
+			<pathelement path="${maven.build.outputDir}" />     
+			<pathelement path="${ingeniasmavenclasspath}" />	  
+			<pathelement path="${mavenclasspath}" />     
+		</classpath>
+    </java>
+  </target>
+
+  <target name="runBasicDeployment" depends="compileproject">
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="ingenias.jade.MainBasicDeployment">
+    <arg line="60000"/> 
+    	<classpath>			  
+			<pathelement path="${maven.build.outputDir}" />    
+			<pathelement path="${ingeniasmavenclasspath}" /> 
+			<pathelement path="${mavenclasspath}" />          
+		</classpath>
+    </java>
+  </target>
+
+  <target name="runPauseBasicDeployment" depends="compileproject">
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="ingenias.jade.MainBasicDeployment">
+    <arg line="60000 pause"/> 
+    	<classpath>			  
+			<pathelement path="${maven.build.outputDir}" />     
+			<pathelement path="${ingeniasmavenclasspath}" />
+			<pathelement path="${mavenclasspath}" />          
+		</classpath>
+    </java>
+  </target>
+  
+   <target name="runjadeBasicDeployment" depends="getclasspathfrommaven">
+   <mkdir dir="target/jade"/>
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="jade.Boot">
+	<arg line="-gui -port 60000 -mtp 'jade.mtp.http.MessageTransportProtocol(http://127.0.0.1:60001/acc)' -file-dir target/jade/"/>
+      	<classpath>					
+			<pathelement path="${maven.build.outputDir}" />   
+			<pathelement path="${ingeniasmavenclasspath}" />
+			<pathelement path="${mavenclasspath}" />        
+		</classpath>
+    </java>
+  </target>
+  
+   <target name="runfederatedjadeBasicDeployment" depends="getclasspathfrommaven">
+    <mkdir dir="target/jade"/>
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="jade.Boot">
+    <arg line="-gui -port 60000 -mtp 'jade.mtp.http.MessageTransportProtocol(http://127.0.0.1:60001/acc)' -file-dir target/jade subDF:jade.domain.df federator:jade.misc.DFFederatorAgent(resources/DFFederatorAgent.properties)"/>	
+		<classpath>		  
+			<pathelement path="${maven.build.outputDir}" />    
+			<pathelement path="${ingeniasmavenclasspath}" />	
+			<pathelement path="${mavenclasspath}" />    
+		</classpath>
+    </java>
+  </target>
+  
+  <target name="debugBasicDeployment" depends="compileproject">
+	  
+	  <java fork="true" failonerror="true" maxmemory="256m"
+		classname="ingenias.jade.MainBasicDeployment">
+		  <jvmarg line="-Xdebug -Xrunjdwp:transport=dt_socket,address=60005,server=y,suspend=n"/>
+		 <arg line="60000"/>
+		<classpath>		  
+			<pathelement path="${maven.build.outputDir}" />     
+			<pathelement path="${ingeniasmavenclasspath}" />
+			<pathelement path="${mavenclasspath}" />        
+		</classpath>
+	  </java>
+  </target>
+  
+  <!-- ***********************  -->
+  <!-- Node  -->
+  <!-- ***********************  -->
+  <!--   Runs a MAS created with the jade module and contained in the node  -->
+   <target name="runProdStandAlone" depends="compileproject">
+    <mkdir dir="target/jade"/>
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="ingenias.jade.MainProdStandAlone">
+    <arg line="60000"/>
+		<classpath>		
+			<pathelement path="${maven.build.outputDir}" />     
+			<pathelement path="${ingeniasmavenclasspath}" />	  
+			<pathelement path="${mavenclasspath}" />     
+		</classpath>
+    </java>
+  </target>
+
+  <target name="run" depends="compileproject">
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="ingenias.jade.Main">
+    <arg line="60000"/> 
+    	<classpath>			  
+			<pathelement path="${maven.build.outputDir}" />    
+			<pathelement path="${ingeniasmavenclasspath}" /> 
+			<pathelement path="${mavenclasspath}" />          
+		</classpath>
+    </java>
+  </target>
+
+  <target name="runPause" depends="compileproject">
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="ingenias.jade.Main">
+    <arg line="60000 pause"/> 
+    	<classpath>			  
+			<pathelement path="${maven.build.outputDir}" />     
+			<pathelement path="${ingeniasmavenclasspath}" />
+			<pathelement path="${mavenclasspath}" />          
+		</classpath>
+    </java>
+  </target>
+  
+   <target name="runjade" depends="getclasspathfrommaven">
+   <mkdir dir="target/jade"/>
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="jade.Boot">
+	<arg line="-gui -port 60000 -mtp 'jade.mtp.http.MessageTransportProtocol(http://127.0.0.1:60001/acc)' -file-dir target/jade/"/>
+      	<classpath>					
+			<pathelement path="${maven.build.outputDir}" />   
+			<pathelement path="${ingeniasmavenclasspath}" />
+			<pathelement path="${mavenclasspath}" />        
+		</classpath>
+    </java>
+  </target>
+  
+   <target name="runfederatedjade" depends="getclasspathfrommaven">
+    <mkdir dir="target/jade"/>
+    <java fork="true" failonerror="true" maxmemory="128m"
+    classname="jade.Boot">
+    <arg line="-gui -port 60000 -mtp 'jade.mtp.http.MessageTransportProtocol(http://127.0.0.1:60001/acc)' -file-dir target/jade subDF:jade.domain.df federator:jade.misc.DFFederatorAgent(resources/DFFederatorAgent.properties)"/>	
+		<classpath>		  
+			<pathelement path="${maven.build.outputDir}" />    
+			<pathelement path="${ingeniasmavenclasspath}" />	
+			<pathelement path="${mavenclasspath}" />    
+		</classpath>
+    </java>
+  </target>
+  
+  <target name="debug" depends="compileproject">
+	  
+	  <java fork="true" failonerror="true" maxmemory="256m"
+		classname="ingenias.jade.Main">
+		  <jvmarg line="-Xdebug -Xrunjdwp:transport=dt_socket,address=60005,server=y,suspend=n"/>
+		 <arg line="60000"/>
+		<classpath>		  
+			<pathelement path="${maven.build.outputDir}" />     
+			<pathelement path="${ingeniasmavenclasspath}" />
+			<pathelement path="${mavenclasspath}" />        
+		</classpath>
+	  </java>
+  </target>
+  
+  
+  </project>
+ 
