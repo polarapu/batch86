@@ -1,0 +1,39 @@
+Download Chef-Work station rpm file
+
+https://community.chef.io/downloads/tools/workstation?os=el
+
+copy chef.rpm into /opt dir.
+
+
+playbook
+========
+install.yml
+-----------
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: copying rpm files from ansible server to client
+    copy:
+         src: /opt/*.rpm
+         dest: /home/ansible
+  - name: Installing rpm
+    yum:
+         name: /home/*.rpm
+         state: present
+
+
+uninstall.yml
+-------------
+
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Installing rpm
+    yum:
+         name: chef-workstation-22.6.973-1.el7.x86_64
+         state: absent
+
+
