@@ -16,11 +16,11 @@ install.yml
   tasks:
   - name: copying rpm files from ansible server to client
     copy:
-         src: /opt/*.rpm
+         src: /opt/chef-workstation-22.10.1013-1.el7.x86_64.rpm
          dest: /home/ansible
   - name: Installing rpm
     yum:
-         name: /home/*.rpm
+         name: /home/ansible/chef-workstation-22.10.1013-1.el7.x86_64.rpm
          state: present
 
 
@@ -33,7 +33,7 @@ uninstall.yml
   tasks:
   - name: Installing rpm
     yum:
-         name: chef-workstation-22.6.973-1.el7.x86_64
+         name: chef-workstation-22.10.1013-1.el7.x86_64
          state: absent
 
 
